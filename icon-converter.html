@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Converter - Right-click to Save as PNG</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+    }
+    .icon-container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .icon-box {
+      display: inline-block;
+      margin: 20px;
+      text-align: center;
+    }
+    canvas {
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    canvas:hover {
+      transform: scale(1.05);
+    }
+    .instructions {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 20px 0;
+      border-left: 4px solid #2196f3;
+    }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 PassMark Extension - Icon Converter</h1>
+  
+  <div class="instructions">
+    <h3>📝 Instructions:</h3>
+    <ol>
+      <li>Click the "Download" buttons below to save the icons</li>
+      <li>Save them as <strong>icon48.png</strong> and <strong>icon96.png</strong></li>
+      <li>Place them in the extension folder</li>
+      <li>Or right-click on the images and select "Save Image As..."</li>
+    </ol>
+  </div>
+
+  <div class="icon-container">
+    <div class="icon-box">
+      <h3>48x48 Icon</h3>
+      <canvas id="icon48" width="48" height="48"></canvas>
+      <br>
+      <button onclick="downloadIcon('icon48', 'icon48.png')">Download icon48.png</button>
+    </div>
+
+    <div class="icon-box">
+      <h3>96x96 Icon</h3>
+      <canvas id="icon96" width="96" height="96"></canvas>
+      <br>
+      <button onclick="downloadIcon('icon96', 'icon96.png')">Download icon96.png</button>
+    </div>
+  </div>
+
+  <script>
+    function drawIcon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      
+      // Create gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#667eea');
+      gradient.addColorStop(1, '#764ba2');
+      
+      // Draw rounded rectangle background
+      const radius = size / 6;
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.moveTo(radius, 0);
+      ctx.lineTo(size - radius, 0);
+      ctx.quadraticCurveTo(size, 0, size, radius);
+      ctx.lineTo(size, size - radius);
+      ctx.quadraticCurveTo(size, size, size - radius, size);
+      ctx.lineTo(radius, size);
+      ctx.quadraticCurveTo(0, size, 0, size - radius);
+      ctx.lineTo(0, radius);
+      ctx.quadraticCurveTo(0, 0, radius, 0);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Draw text
+      ctx.fillStyle = 'white';
+      ctx.font = `bold ${size / 2}px Arial, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('PM', size / 2, size / 1.8);
+    }
+    
+    function downloadIcon(canvasId, filename) {
+      const canvas = document.getElementById(canvasId);
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+    
+    // Draw icons on page load
+    drawIcon('icon48', 48);
+    drawIcon('icon96', 96);
+    
+    // Allow right-click download
+    document.querySelectorAll('canvas').forEach(canvas => {
+      canvas.addEventListener('contextmenu', (e) => {
+        // Let the browser handle right-click naturally
+      });
+    });
+  </script>
+</body>
+</html>
