@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "PassMark Score Display for Leboncoin",
+  "version": "1.0",
+  "description": "Displays PassMark scores for CPUs and GPUs on leboncoin listings",
+  "permissions": [
+    "https://www.leboncoin.fr/*",
+    "https://www.cpubenchmark.net/*",
+    "https://www.videocardbenchmark.net/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.leboncoin.fr/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "48": "icon48.png",
+    "96": "icon96.png"
+  }
+}
