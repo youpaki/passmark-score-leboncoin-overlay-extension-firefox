@@ -1,0 +1,34 @@
+# Ignore browser-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore temporary files
+*.tmp
+*.log
+*~
+
+# Ignore node_modules (if any)
+node_modules/
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore test data files (the leboncoin example page)
+*.htm
+*_fichiers/
+
+# Ignore OS files
+desktop.ini
+
+# Keep extension files
+!manifest.json
+!content.js
+!styles.css
+!*.png
+!*.svg
+!*.md
+!*.html
+!*.bat
