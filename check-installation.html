@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extension Installation Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .status-box {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 20px 0;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin: 10px 0;
+      background: #f8f9fa;
+      border-radius: 4px;
+      border-left: 4px solid #ccc;
+    }
+    .check-item.success {
+      border-left-color: #28a745;
+      background: #d4edda;
+    }
+    .check-item.error {
+      border-left-color: #dc3545;
+      background: #f8d7da;
+    }
+    .check-item.warning {
+      border-left-color: #ffc107;
+      background: #fff3cd;
+    }
+    .icon {
+      font-size: 24px;
+      margin-right: 15px;
+    }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .log {
+      background: #000;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Extension Installation Checker</h1>
+  
+  <div class="status-box">
+    <h2>Pre-Installation Checks</h2>
+    <div id="checks"></div>
+    <button onclick="checkFiles()">🔄 Check Again</button>
+  </div>
+
+  <div class="status-box">
+    <h2>Quick Actions</h2>
+    <button onclick="openFirefox()">🦊 Open Firefox Debugging</button>
+    <button onclick="openTest()">🧪 Open Test Page</button>
+    <button onclick="openIcons()">🎨 Generate Icons</button>
+  </div>
+
+  <div class="status-box">
+    <h2>Console Log</h2>
+    <div id="log" class="log"></div>
+    <button onclick="clearLog()">🗑️ Clear Log</button>
+  </div>
+
+  <script>
+    const log = (message) => {
+      const logDiv = document.getElementById('log');
+      const timestamp = new Date().toLocaleTimeString();
+      logDiv.innerHTML += `[${timestamp}] ${message}\n`;
+      logDiv.scrollTop = logDiv.scrollHeight;
+    };
+
+    const clearLog = () => {
+      document.getElementById('log').innerHTML = '';
+      log('Log cleared');
+    };
+
+    const addCheck = (icon, message, status) => {
+      const checksDiv = document.getElementById('checks');
+      const checkItem = document.createElement('div');
+      checkItem.className = `check-item ${status}`;
+      checkItem.innerHTML = `
+        <div class="icon">${icon}</div>
+        <div>${message}</div>
+      `;
+      checksDiv.appendChild(checkItem);
+    };
+
+    const checkFiles = async () => {
+      const checksDiv = document.getElementById('checks');
+      checksDiv.innerHTML = '';
+      log('Starting file checks...');
+
+      // Check required files
+      const requiredFiles = [
+        { name: 'manifest.json', label: 'Extension Manifest' },
+        { name: 'content.js', label: 'Content Script' },
+        { name: 'styles.css', label: 'Stylesheets' }
+      ];
+
+      const optionalFiles = [
+        { name: 'icon48.png', label: 'Small Icon (48x48)' },
+        { name: 'icon96.png', label: 'Large Icon (96x96)' }
+      ];
+
+      log('Checking required files...');
+      for (const file of requiredFiles) {
+        try {
+          const response = await fetch(file.name);
+          if (response.ok) {
+            addCheck('✅', `${file.label} - Found`, 'success');
+            log(`✓ ${file.name} exists`);
+          } else {
+            addCheck('❌', `${file.label} - Missing!`, 'error');
+            log(`✗ ${file.name} not found`);
+          }
+        } catch (error) {
+          addCheck('❌', `${file.label} - Error checking`, 'error');
+          log(`✗ Error checking ${file.name}: ${error.message}`);
+        }
+      }
+
+      log('Checking optional files...');
+      for (const file of optionalFiles) {
+        try {
+          const response = await fetch(file.name);
+          if (response.ok) {
+            addCheck('✅', `${file.label} - Found`, 'success');
+            log(`✓ ${file.name} exists`);
+          } else {
+            addCheck('⚠️', `${file.label} - Not found (optional)`, 'warning');
+            log(`! ${file.name} not found (optional)`);
+          }
+        } catch (error) {
+          addCheck('⚠️', `${file.label} - Not found (optional)`, 'warning');
+          log(`! ${file.name} not found (optional)`);
+        }
+      }
+
+      // Check manifest.json content
+      try {
+        const manifestResponse = await fetch('manifest.json');
+        if (manifestResponse.ok) {
+          const manifest = await manifestResponse.json();
+          addCheck('✅', `Manifest Version: ${manifest.version}`, 'success');
+          addCheck('✅', `Extension Name: ${manifest.name}`, 'success');
+          log(`Manifest valid - Version ${manifest.version}`);
+        }
+      } catch (error) {
+        addCheck('❌', 'Manifest JSON is invalid!', 'error');
+        log(`✗ Error parsing manifest: ${error.message}`);
+      }
+
+      log('File checks complete!');
+    };
+
+    const openFirefox = () => {
+      log('Opening Firefox debugging page...');
+      window.open('about:debugging#/runtime/this-firefox', '_blank');
+    };
+
+    const openTest = () => {
+      log('Opening test page...');
+      window.open('test-page.html', '_blank');
+    };
+
+    const openIcons = () => {
+      log('Opening icon converter...');
+      window.open('icon-converter.html', '_blank');
+    };
+
+    // Run checks on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      log('Extension Installation Checker loaded');
+      log('Ready to check files...');
+      checkFiles();
+    });
+  </script>
+</body>
+</html>
