@@ -1,6 +1,16 @@
-# PassMark Score Display Extension for Leboncoin
+# 🚀 PassMark Score Leboncoin Overlay Extension for Firefox
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Firefox](https://img.shields.io/badge/Firefox-Extension-orange.svg)](https://www.mozilla.org/firefox/)
+[![Version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/yourusername/passmark-score-leboncoin-overlay-extension-firefox)
 
 A Firefox extension that automatically displays PassMark benchmark scores for CPUs and GPUs in leboncoin listings.
+
+![Extension Preview](https://via.placeholder.com/800x400/667eea/ffffff?text=PassMark+Score+Display+Preview)
+
+## 🌟 Quick Overview
+
+Never miss a great hardware deal again! This extension automatically detects CPUs and GPUs on leboncoin.fr and displays their PassMark benchmark scores right below the listing titles - helping you make informed purchasing decisions instantly.
 
 ## Features
 
@@ -155,7 +165,9 @@ This extension:
 
 ## License
 
-Free to use and modify for personal use.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+**Important:** This extension is not affiliated with, endorsed by, or sponsored by PassMark Software Pty Ltd or leboncoin. PassMark® is a registered trademark of PassMark Software Pty Ltd. All trademarks belong to their respective owners.
 
 ## Credits
 
@@ -163,12 +175,49 @@ PassMark scores are from PassMark Software's CPU and GPU benchmarks:
 - https://www.cpubenchmark.net/
 - https://www.videocardbenchmark.net/
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+### How to Contribute
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Adding Hardware
+
+To add more hardware models, edit `content.js` and add entries to the `HARDWARE_DATABASE` object with their PassMark scores.
+
+## Roadmap
+
+- [ ] Add more hardware models (laptops, mobile CPUs)
+- [ ] Price-to-performance ratio calculator
+- [ ] Historical price tracking
+- [ ] Support for other French marketplaces
+- [ ] Live API integration (optional)
+
+## Support
+
+If you find this extension useful, please consider:
+- ⭐ Starring the repository
+- 🐛 Reporting bugs via Issues
+- 💡 Suggesting new features
+- 🔧 Contributing code improvements
+
 ## Version History
 
 ### 1.0 (November 2025)
 - Initial release
-- Support for AMD Ryzen CPUs
-- Support for Intel Core CPUs
-- Support for NVIDIA GPUs
-- Support for AMD Radeon GPUs
-- Real-time detection on leboncoin.fr
+- Support for 60+ AMD Ryzen and Intel Core CPUs
+- Support for NVIDIA RTX/GTX and AMD Radeon GPUs
+- Single-core and multi-core CPU scores
+- Graphics scores for GPUs
+- Automatic detection on leboncoin.fr
+- Privacy-focused design (no tracking)
+
+---
+
+**Made with ❤️ for hardware enthusiasts** | **Star ⭐ if you find it useful!**
