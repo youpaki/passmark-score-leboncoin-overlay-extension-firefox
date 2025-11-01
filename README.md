@@ -1,4 +1,4 @@
-# 🔥 PassMark Score Display for Leboncoin
+# PassMark Score Display for Leboncoin
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Firefox](https://img.shields.io/badge/Firefox-Extension-orange.svg)](https://www.mozilla.org/firefox/)
