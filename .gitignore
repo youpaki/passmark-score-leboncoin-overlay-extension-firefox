@@ -23,6 +23,12 @@ node_modules/
 # Ignore OS files
 desktop.ini
 
+# Ignore distribution packages
+*.zip
+*.crx
+*.xpi
+web-ext-artifacts/
+
 # Keep extension files
 !manifest.json
 !content.js
