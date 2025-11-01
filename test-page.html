@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Page - PassMark Extension</title>
+  <style>
+    body {
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .info {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 20px 0;
+      border-left: 4px solid #2196f3;
+    }
+    .ad-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid #e0e0e0;
+      display: flex;
+      transition: box-shadow 0.2s;
+    }
+    .ad-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .ad-image {
+      width: 200px;
+      height: 150px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+      padding: 10px;
+    }
+    .ad-content {
+      flex: 1;
+      padding: 16px;
+    }
+    .ad-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .ad-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #f5576c;
+      margin-bottom: 12px;
+    }
+    .ad-details {
+      font-size: 13px;
+      color: #666;
+    }
+    .badge-container {
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Test Page - PassMark Extension</h1>
+  
+  <div class="info">
+    <strong>ℹ️ This is a test page</strong><br>
+    Load the Firefox extension and refresh this page to see PassMark scores appear below the hardware titles.
+    <br><br>
+    <strong>Expected behavior:</strong>
+    <ul>
+      <li>CPUs will show single-core and multi-core scores</li>
+      <li>GPUs will show overall graphics scores</li>
+      <li>Badges should appear below each product title</li>
+    </ul>
+  </div>
+
+  <h2>Sample Listings</h2>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>CPU Image</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">Ryzen 9 5900x</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">150 €</p>
+      <div class="ad-details">
+        <p>Accessoires informatique</p>
+        <p>Paris 75001</p>
+      </div>
+    </div>
+  </article>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>GPU Image</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">RTX 3080 Ti</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">500 €</p>
+      <div class="ad-details">
+        <p>Cartes graphiques</p>
+        <p>Lyon 69001</p>
+      </div>
+    </div>
+  </article>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>CPU Image</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">Intel i7-12700K</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">280 €</p>
+      <div class="ad-details">
+        <p>Processeurs</p>
+        <p>Marseille 13001</p>
+      </div>
+    </div>
+  </article>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>GPU Image</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">AMD RX 6800 XT</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">400 €</p>
+      <div class="ad-details">
+        <p>Cartes graphiques</p>
+        <p>Toulouse 31000</p>
+      </div>
+    </div>
+  </article>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>CPU Image</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">Ryzen 5 5600</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">100 €</p>
+      <div class="ad-details">
+        <p>Processeurs</p>
+        <p>Bordeaux 33000</p>
+      </div>
+    </div>
+  </article>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>GPU Image</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">NVIDIA GeForce RTX 4090</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">1800 €</p>
+      <div class="ad-details">
+        <p>Cartes graphiques</p>
+        <p>Nice 06000</p>
+      </div>
+    </div>
+  </article>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>CPU Image</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">Intel Core i9-13900K</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">550 €</p>
+      <div class="ad-details">
+        <p>Processeurs</p>
+        <p>Nantes 44000</p>
+      </div>
+    </div>
+  </article>
+
+  <article data-test-id="ad" class="ad-card">
+    <div class="ad-image">
+      <div>Other Item</div>
+    </div>
+    <div class="ad-content">
+      <div class="ad-title-container">
+        <p data-test-id="adcard-title" class="ad-title">Clavier mécanique RGB</p>
+        <div class="badge-container"></div>
+      </div>
+      <p class="ad-price">50 €</p>
+      <div class="ad-details">
+        <p>Périphériques</p>
+        <p>Strasbourg 67000</p>
+        <p style="color: #999; font-style: italic; margin-top: 8px;">
+          ⚠️ This item should NOT have a PassMark badge
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <div class="info" style="margin-top: 30px; background: #fff3cd; border-left-color: #ffc107;">
+    <strong>🔍 Debugging Tips:</strong>
+    <ul>
+      <li>Open Firefox Developer Console (F12)</li>
+      <li>Look for "PassMark Score Display Extension loaded" message</li>
+      <li>Check for "Found hardware:" messages showing detected items</li>
+      <li>If badges don't appear, check for JavaScript errors</li>
+    </ul>
+  </div>
+</body>
+</html>
