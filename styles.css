@@ -1,0 +1,85 @@
+/* PassMark Score Badge Styles */
+.passmark-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  margin-top: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.passmark-badge.cpu {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.passmark-badge.gpu {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.passmark-badge .icon {
+  font-size: 13px;
+}
+
+.passmark-badge .label {
+  font-size: 9px;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.passmark-badge .score {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.passmark-loading {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Multi-score layout for CPUs with both single and multi-core scores */
+.passmark-scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.passmark-mini-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 6px;
+  background: rgba(102, 126, 234, 0.15);
+  color: #667eea;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 3px;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.passmark-mini-badge.single-core {
+  background: rgba(245, 87, 108, 0.15);
+  color: #f5576c;
+  border-color: rgba(245, 87, 108, 0.3);
+}
+
+.passmark-mini-badge.multi-core {
+  background: rgba(79, 172, 254, 0.15);
+  color: #4facfe;
+  border-color: rgba(79, 172, 254, 0.3);
+}
